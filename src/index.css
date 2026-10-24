@@ -1,0 +1,122 @@
+@import "tailwindcss";
+
+@theme {
+  --font-script: "Pinyon Script", "Great Vibes", cursive;
+  --font-calligraphy: "Great Vibes", "Pinyon Script", cursive;
+  --font-cinzel: "Cinzel", Georgia, serif;
+  --font-cormorant: "Cormorant Garamond", Garamond, serif;
+  --font-sans: "Plus Jakarta Sans", system-ui, -apple-system, sans-serif;
+
+  --color-burgundy-950: #280408;
+  --color-burgundy-900: #42060e;
+  --color-burgundy-850: #4d0812;
+  --color-burgundy-800: #5c0d18;
+  --color-burgundy-700: #741120;
+  --color-burgundy-600: #8c1628;
+  --color-burgundy-500: #a91d32;
+
+  --color-cream-light: #fffdf9;
+  --color-cream-base: #faf7f2;
+  --color-cream-parchment: #f4eee5;
+  --color-cream-border: #e9dfd0;
+
+  --color-gold-light: #fbe8a6;
+  --color-gold-accent: #d4af37;
+  --color-gold-dark: #a67c1e;
+
+  --color-crimson-base: #b81d24;
+  --color-crimson-dark: #961219;
+}
+
+/* Prevenire absolută a oricărui scroll orizontal pe telefoane mobile */
+html,
+body,
+#root {
+  width: 100%;
+  max-width: 100vw;
+  overflow-x: hidden !important;
+  position: relative;
+  margin: 0;
+  padding: 0;
+  -webkit-overflow-scrolling: touch;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* Custom 3D Card Flip styles */
+.perspective-1000 {
+  perspective: 1200px;
+  -webkit-perspective: 1200px;
+}
+
+.preserve-3d {
+  transform-style: preserve-3d;
+  -webkit-transform-style: preserve-3d;
+}
+
+.backface-hidden {
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+.rotate-y-180 {
+  transform: rotateY(180deg);
+  -webkit-transform: rotateY(180deg);
+}
+
+/* Texturi și fundaluri discrete */
+.bg-playing-card-pattern {
+  background-color: #5c0d18;
+  background-image: radial-gradient(rgba(212, 175, 55, 0.12) 1px, transparent 1px), radial-gradient(rgba(255, 255, 255, 0.04) 1px, #5c0d18 1px);
+  background-size: 24px 24px;
+  background-position: 0 0, 12px 12px;
+}
+
+.bg-linen-subtle {
+  background-color: #faf7f2;
+  background-image: radial-gradient(#d6c9b8 0.75px, transparent 0.75px);
+  background-size: 16px 16px;
+}
+
+/* Luxury card gold border glow */
+.gold-foil-border {
+  border: 1px solid rgba(212, 175, 55, 0.4);
+  box-shadow: 0 0 15px rgba(212, 175, 55, 0.15), inset 0 0 15px rgba(212, 175, 55, 0.08);
+}
+
+.gold-foil-glow {
+  box-shadow: 0 10px 30px -5px rgba(212, 175, 55, 0.25), 0 0 15px rgba(212, 175, 55, 0.15);
+}
+
+.burgundy-card-shadow {
+  box-shadow: 0 20px 40px -10px rgba(44, 4, 9, 0.35), 0 0 0 1px rgba(212, 175, 55, 0.2);
+}
+
+/* Animație puls inimă */
+@keyframes heartFloat {
+  0%, 100% { transform: translateY(0) scale(1); }
+  50% { transform: translateY(-4px) scale(1.03); }
+}
+
+.animate-heart-float {
+  animation: heartFloat 3s ease-in-out infinite;
+}
+
+/* Scrollbar stilizat */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #faf7f2;
+}
+::-webkit-scrollbar-thumb {
+  background: #741120;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #5c0d18;
+}
