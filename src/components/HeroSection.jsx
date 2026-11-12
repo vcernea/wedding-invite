@@ -135,9 +135,9 @@ export default function HeroSection({ onOpenOriginalsModal }) {
               </div>
             </div>
 
-            {/* Colț Dreapta Jos */}
+            {/* Colț Dreapta Jos: "S" și Inimă */}
             <div className="flex flex-col items-center w-8 sm:w-10 text-[#741120] z-10 pb-1 pr-1 self-end rotate-180">
-              <span className="font-['Cormorant_Garamond'] text-3xl sm:text-4xl font-bold leading-none">A</span>
+              <span className="font-['Cormorant_Garamond'] text-3xl sm:text-4xl font-bold leading-none">S</span>
               <span className="text-xl sm:text-2xl leading-none text-[#b81d24]">♥</span>
             </div>
           </div>

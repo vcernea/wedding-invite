@@ -333,43 +333,6 @@ export default function RsvpSection({ onGuestbookMessageAdded }) {
                     </div>
                   </div>
 
-                  {/* Asistență Călătorie & Cazare (Oaspeți străinătate) */}
-                  <div className="bg-[#6b0f1a]/5 p-5 rounded-2xl border-2 border-[#6b0f1a]/25">
-                    <label className="flex items-start space-x-3.5 cursor-pointer">
-                      <input
-                        type="checkbox"
-                        name="needsAccommodation"
-                        checked={formData.needsAccommodation}
-                        onChange={handleChange}
-                        className="accent-[#741120] w-5 h-5 mt-0.5 shrink-0"
-                      />
-                      <div>
-                        <span className="font-bold text-sm uppercase tracking-wider text-[#741120] block">
-                          Călătoresc din străinătate și aș dori ajutor cu cazarea sau transferul
-                        </span>
-                        <span className="text-xs sm:text-sm text-[#554242] mt-0.5 block leading-relaxed">
-                          Bifați această opțiune dacă veniți cu avionul sau doriți sprijin la rezervarea hotelului în Chișinău.
-                        </span>
-                      </div>
-                    </label>
-
-                    {formData.needsAccommodation && (
-                      <div className="mt-4 pt-3 border-t border-[#741120]/20">
-                        <label className="text-xs sm:text-sm font-bold text-[#221A1A] block mb-1">
-                          Data estimată a sosirii în Chișinău:
-                        </label>
-                        <input
-                          type="text"
-                          name="arrivalDate"
-                          placeholder="Ex: 15 Iulie cu zborul de seară..."
-                          value={formData.arrivalDate}
-                          onChange={handleChange}
-                          className="w-full px-4 py-2.5 rounded-xl border border-[#d6c9b8] bg-white text-sm focus:outline-none focus:ring-2 focus:ring-[#741120]"
-                        />
-                      </div>
-                    )}
-                  </div>
-
                   {/* Melodie dorită */}
                   <div>
                     <label className="font-['Cinzel'] text-xs sm:text-sm font-bold uppercase tracking-wider text-[#221A1A] block mb-1.5">

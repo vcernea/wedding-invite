@@ -20,11 +20,12 @@ export default function Navbar({ onReopenEnvelope }) {
     setIsPlaying(active);
   };
 
-  // Meniu minimalist, curat și esențial (doar 4 secțiuni cheie)
+  // Meniu minimalist, curat și esențial
   const navLinks = [
     { label: 'Eveniment & Data', href: '#data' },
-    { label: 'Programul Zilei', href: '#program' },
-    { label: 'Cazare & Călătorie', href: '#ghid-calatorie' },
+    { label: 'Povestea Noastră', href: '#povestea' },
+    { label: 'Locație', href: '#locatie' },
+    { label: 'Dress Code', href: '#dress-code' },
     { label: 'Confirmă (RSVP)', href: '#rsvp' },
   ];
 

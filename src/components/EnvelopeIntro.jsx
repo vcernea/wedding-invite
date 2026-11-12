@@ -31,7 +31,7 @@ export default function EnvelopeIntro({ onOpenComplete }) {
       console.warn("Confetti:", e);
     }
 
-    // Secvență de animație: deschidere clapetă, ridicare carte, tranziție
+    // Secvență de animație: deschidere clapetă, ridicare carte, timp generos pentru admirare, tranziție
     setTimeout(() => {
       setIsOpen(true);
       setTimeout(() => {
@@ -40,7 +40,7 @@ export default function EnvelopeIntro({ onOpenComplete }) {
           onOpenComplete();
         }
       }, 1200);
-    }, 800);
+    }, 3200);
   };
 
   const handleSkip = () => {
@@ -105,6 +105,18 @@ export default function EnvelopeIntro({ onOpenComplete }) {
                 : 'transform translate-y-2 z-10'
             }`}
           >
+            {/* Colț Stânga Sus: "A" și Inimă */}
+            <div className="absolute top-2 left-2.5 flex flex-col items-center text-[#741120] leading-none pointer-events-none">
+              <span className="font-['Cormorant_Garamond'] text-sm sm:text-base font-bold">A</span>
+              <span className="text-[10px] sm:text-xs text-[#b81d24]">♥</span>
+            </div>
+
+            {/* Colț Dreapta Jos: "S" și Inimă */}
+            <div className="absolute bottom-2 right-2.5 flex flex-col items-center text-[#741120] leading-none pointer-events-none rotate-180">
+              <span className="font-['Cormorant_Garamond'] text-sm sm:text-base font-bold">S</span>
+              <span className="text-[10px] sm:text-xs text-[#b81d24]">♥</span>
+            </div>
+
             <span className="font-['Cinzel'] text-xs sm:text-sm tracking-widest text-[#741120] uppercase font-bold">
               Asul de Inimă Roșie
             </span>

@@ -6,21 +6,21 @@ const CARDS = [
     id: 1,
     title: "Coperta: Asul de Inimă",
     subtitle: "„Împreună până la capătul cărților”",
-    src: "/images/invitation_card_front.png",
+    src: `${import.meta.env.BASE_URL}images/invitation_card_front.png`,
     description: "Designul fizic original al coperții cu monograma S & A încrustată în inima roșie regală."
   },
   {
     id: 2,
     title: "Pagina 2: Mesajul Iubirii",
     subtitle: "„Cea mai frumoasă carte: iubirea”",
-    src: "/images/invitation_card_text.png",
+    src: `${import.meta.env.BASE_URL}images/invitation_card_text.png`,
     description: "Mesajul caligrafic din invitația tipărită adresat invitaților dragi."
   },
   {
     id: 3,
     title: "Pagina 3: Data & Avegarden",
     subtitle: "„16 | 07 | 2027 • Restaurantul Avegarden”",
-    src: "/images/invitation_card_venue.png",
+    src: `${import.meta.env.BASE_URL}images/invitation_card_venue.png`,
     description: "Designul oficial cu data nunții, numărătoarea inversă și detaliile locației."
   }
 ];
