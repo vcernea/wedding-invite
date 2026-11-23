@@ -24,7 +24,8 @@ export const weddingDetails = {
     mapQuery: "Avegarden, Strada Socoleni 5/3, Chisinau",
     googleMapsUrl: "https://maps.google.com/?q=Avegarden+Chisinau",
     wazeUrl: "https://waze.com/ul?q=Avegarden+Chisinau",
-    contactPhone: "+373 60 123 456", // placeholder facil de înlocuit
+    contactPhone: "+373 789 20 561",
+    contactPhoneRaw: "37378920561",
     contactEmail: "nunta.alina.sergiu@gmail.com",
     rsvpDeadline: "1 Mai 2027"
   },
@@ -81,7 +82,7 @@ export const weddingDetails = {
     },
     {
       q: "Există parcare la Restaurantul Avegarden?",
-      a: "Da, locația oferă parcare privată, generoasă și securizată, gratuită pentru toți invitații pe durata întregului eveniment."
+      a: "Da, locația oferă parcare privată cu o capacitate de doar 15 locuri, disponibilă exclusiv pe durata evenimentului."
     },
     {
       q: "Meniul poate fi adaptat pentru alergii sau preferințe specifice?",

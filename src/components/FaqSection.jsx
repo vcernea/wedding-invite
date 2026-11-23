@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { ChevronDown, HelpCircle, MessageCircle } from 'lucide-react';
+import { ChevronDown, HelpCircle, MessageCircle, Phone } from 'lucide-react';
 import { weddingDetails } from '../data/weddingDetails';
 
 export default function FaqSection() {
@@ -65,18 +65,30 @@ export default function FaqSection() {
 
         {/* Buton Contact Suplimentar */}
         <div className="mt-12 text-center">
-          <p className="text-sm sm:text-base text-white/90 font-sans mb-3">
+          <p className="text-sm sm:text-base text-white/90 font-sans mb-1">
             Aveți orice altă întrebare organizatorică?
           </p>
-          <a
-            href={`https://wa.me/37360123456?text=${encodeURIComponent("Bună Alina & Sergiu, am o întrebare legată de nuntă!")}`}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center space-x-2.5 px-8 py-3.5 rounded-full text-xs sm:text-sm font-bold uppercase tracking-wider bg-[#25D366] text-white hover:bg-[#20ba5a] shadow-xl transition-all transform hover:scale-105"
-          >
-            <MessageCircle className="w-5 h-5" />
-            <span>Scrie-ne pe WhatsApp</span>
-          </a>
+          <p className="text-sm text-[#fbe8a6] font-semibold mb-4">
+            Contact Mireasă (Alina): <a href={`tel:${weddingDetails.event.contactPhoneRaw}`} className="underline hover:text-white">{weddingDetails.event.contactPhone}</a> (Disponibil și pe WhatsApp)
+          </p>
+          <div className="flex flex-wrap items-center justify-center gap-3">
+            <a
+              href={`https://wa.me/${weddingDetails.event.contactPhoneRaw}?text=${encodeURIComponent("Bună Alina & Sergiu, am o întrebare legată de nuntă!")}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center space-x-2.5 px-7 py-3.5 rounded-full text-xs sm:text-sm font-bold uppercase tracking-wider bg-[#25D366] text-white hover:bg-[#20ba5a] shadow-xl transition-all transform hover:scale-105"
+            >
+              <MessageCircle className="w-5 h-5" />
+              <span>Scrie-i Alinei pe WhatsApp</span>
+            </a>
+            <a
+              href={`tel:${weddingDetails.event.contactPhoneRaw}`}
+              className="inline-flex items-center space-x-2.5 px-6 py-3.5 rounded-full text-xs sm:text-sm font-bold uppercase tracking-wider bg-white/15 hover:bg-white/25 text-white border border-white/30 shadow-xl transition-all"
+            >
+              <Phone className="w-4 h-4 text-[#d4af37]" />
+              <span>Sună: {weddingDetails.event.contactPhone}</span>
+            </a>
+          </div>
         </div>
       </div>
     </section>

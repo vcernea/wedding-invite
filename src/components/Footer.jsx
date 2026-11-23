@@ -30,7 +30,7 @@ export default function Footer() {
           {weddingDetails.couple.fullNameText}
         </h3>
 
-        <div className="flex flex-wrap items-center justify-center gap-5 text-sm sm:text-base tracking-widest uppercase font-['Cinzel'] text-[#d4af37] mb-8 font-semibold">
+        <div className="flex flex-wrap items-center justify-center gap-5 text-sm sm:text-base tracking-widest uppercase font-['Cinzel'] text-[#d4af37] mb-3 font-semibold">
           <span className="flex items-center gap-2">
             <Calendar className="w-4 h-4" /> 16 Iulie 2027 • ora 18:00
           </span>
@@ -38,6 +38,19 @@ export default function Footer() {
           <span className="flex items-center gap-2">
             <MapPin className="w-4 h-4" /> Avegarden, Chișinău
           </span>
+        </div>
+
+        <div className="text-xs sm:text-sm text-[#fbe8a6] mb-8 font-sans">
+          <span>Contact Mireasă (Alina): </span>
+          <a
+            href={`https://wa.me/${weddingDetails.event.contactPhoneRaw}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="underline font-semibold hover:text-white"
+          >
+            {weddingDetails.event.contactPhone}
+          </a>
+          <span className="text-white/70"> (Apel &amp; WhatsApp)</span>
         </div>
 
         <p className="font-['Cormorant_Garamond'] text-xl sm:text-2xl italic text-white/85 max-w-lg mx-auto mb-10 leading-relaxed">

@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import confetti from 'canvas-confetti';
-import { Send, Heart, CheckCircle, Sparkles, User, Users, Utensils, Music, Hotel } from 'lucide-react';
+import { Send, Heart, CheckCircle, Sparkles, User, Users, Utensils } from 'lucide-react';
 import { weddingDetails } from '../data/weddingDetails';
+import { saveRsvp } from '../services/rsvpService';
 
 export default function RsvpSection({ onGuestbookMessageAdded }) {
   const [formData, setFormData] = useState({
@@ -13,9 +14,6 @@ export default function RsvpSection({ onGuestbookMessageAdded }) {
     childrenCount: '0',
     dietaryPreference: 'standard',
     dietaryDetails: '',
-    needsAccommodation: false,
-    arrivalDate: '',
-    favoriteSong: '',
     wishes: '',
   });
 
@@ -53,29 +51,29 @@ export default function RsvpSection({ onGuestbookMessageAdded }) {
     } catch (e) {}
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     setIsSubmitting(true);
 
-    setTimeout(() => {
-      try {
-        localStorage.setItem('wedding_rsvp_alina_sergiu', JSON.stringify(formData));
-        if (formData.wishes.trim() && onGuestbookMessageAdded) {
-          onGuestbookMessageAdded({
-            name: formData.fullName,
-            message: formData.wishes,
-            date: "Acum",
-            city: formData.needsAccommodation ? "Oaspete din Străinătate" : "Invitat de Onoare"
-          });
-        }
-      } catch (err) {}
-
+    try {
+      await saveRsvp(formData);
+      if (formData.wishes.trim() && onGuestbookMessageAdded) {
+        onGuestbookMessageAdded({
+          name: formData.fullName,
+          message: formData.wishes,
+          date: "Acum",
+          city: "Invitat de Onoare"
+        });
+      }
+    } catch (err) {
+      console.error("Submit error:", err);
+    } finally {
       setIsSubmitting(false);
       setSubmitted(true);
       if (formData.attending === 'yes') {
         triggerConfetti();
       }
-    }, 500);
+    }
   };
 
   return (
@@ -141,13 +139,12 @@ export default function RsvpSection({ onGuestbookMessageAdded }) {
                       {formData.partnerName ? ` & ${formData.partnerName}` : ''}
                     </h4>
                     <p className="text-sm text-white/90 mt-1">
-                      Număr persoane: <strong>{parseInt(formData.guestCount || '1') + parseInt(formData.childrenCount || '0')}</strong> • Meniu: <strong>{formData.dietaryPreference}</strong>
+                      Număr adulți: <strong>{formData.guestCount || '1'}</strong>
+                      {parseInt(formData.childrenCount || '0', 10) > 0 && (
+                        <span> • Copii: <strong>{formData.childrenCount}</strong></span>
+                      )}
+                      {' • '}Meniu: <strong>{formData.dietaryPreference}</strong>
                     </p>
-                    {formData.needsAccommodation && (
-                      <p className="text-xs sm:text-sm text-[#fbe8a6] mt-3 bg-white/10 px-3 py-1.5 rounded-lg font-medium">
-                        ✓ Asistență cazare &amp; călătorie solicitată
-                      </p>
-                    )}
                   </div>
                 </div>
               ) : (
@@ -264,25 +261,26 @@ export default function RsvpSection({ onGuestbookMessageAdded }) {
 
               {formData.attending === 'yes' && (
                 <>
-                  {/* Însoțitor & Număr persoane */}
-                  <div className="grid grid-cols-1 sm:grid-cols-3 gap-5">
-                    <div className="sm:col-span-2">
-                      <label className="font-['Cinzel'] text-xs sm:text-sm font-bold uppercase tracking-wider text-[#221A1A] block mb-1.5">
-                        Nume Însoțitor (dacă veniți în cuplu)
-                      </label>
-                      <input
-                        type="text"
-                        name="partnerName"
-                        placeholder="Ex: Elena Popescu"
-                        value={formData.partnerName}
-                        onChange={handleChange}
-                        className="w-full px-4 py-3 rounded-xl border-2 border-[#d6c9b8] bg-white text-base focus:outline-none focus:ring-2 focus:ring-[#741120]"
-                      />
-                    </div>
+                  {/* Însoțitor */}
+                  <div>
+                    <label className="font-['Cinzel'] text-xs sm:text-sm font-bold uppercase tracking-wider text-[#221A1A] block mb-1.5">
+                      Nume Însoțitor (dacă veniți însoțiți)
+                    </label>
+                    <input
+                      type="text"
+                      name="partnerName"
+                      placeholder="Ex: Elena Popescu"
+                      value={formData.partnerName}
+                      onChange={handleChange}
+                      className="w-full px-4 py-3 rounded-xl border-2 border-[#d6c9b8] bg-white text-base focus:outline-none focus:ring-2 focus:ring-[#741120]"
+                    />
+                  </div>
 
+                  {/* Număr Adulți & Copii */}
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                     <div>
                       <label className="font-['Cinzel'] text-xs sm:text-sm font-bold uppercase tracking-wider text-[#221A1A] block mb-1.5">
-                        Număr Adulți
+                        Număr Adulți *
                       </label>
                       <select
                         name="guestCount"
@@ -290,10 +288,28 @@ export default function RsvpSection({ onGuestbookMessageAdded }) {
                         onChange={handleChange}
                         className="w-full px-4 py-3 rounded-xl border-2 border-[#d6c9b8] bg-white text-base focus:outline-none focus:ring-2 focus:ring-[#741120]"
                       >
-                        <option value="1">1 Persoană</option>
-                        <option value="2">2 Persoane</option>
-                        <option value="3">3 Persoane</option>
-                        <option value="4">4 Persoane</option>
+                        <option value="1">1 Adult</option>
+                        <option value="2">2 Adulți</option>
+                        <option value="3">3 Adulți</option>
+                        <option value="4">4 Adulți</option>
+                      </select>
+                    </div>
+
+                    <div>
+                      <label className="font-['Cinzel'] text-xs sm:text-sm font-bold uppercase tracking-wider text-[#221A1A] block mb-1.5">
+                        Număr Copii (dacă veniți însoțiți)
+                      </label>
+                      <select
+                        name="childrenCount"
+                        value={formData.childrenCount}
+                        onChange={handleChange}
+                        className="w-full px-4 py-3 rounded-xl border-2 border-[#d6c9b8] bg-white text-base focus:outline-none focus:ring-2 focus:ring-[#741120]"
+                      >
+                        <option value="0">Fără copii</option>
+                        <option value="1">1 Copil</option>
+                        <option value="2">2 Copii</option>
+                        <option value="3">3 Copii</option>
+                        <option value="4">4+ Copii</option>
                       </select>
                     </div>
                   </div>
@@ -329,24 +345,6 @@ export default function RsvpSection({ onGuestbookMessageAdded }) {
                         value={formData.dietaryDetails}
                         onChange={handleChange}
                         className="w-full px-4 py-3 rounded-xl border-2 border-[#d6c9b8] bg-white text-base focus:outline-none focus:ring-2 focus:ring-[#741120]"
-                      />
-                    </div>
-                  </div>
-
-                  {/* Melodie dorită */}
-                  <div>
-                    <label className="font-['Cinzel'] text-xs sm:text-sm font-bold uppercase tracking-wider text-[#221A1A] block mb-1.5">
-                      Melodia ta preferată pentru ringul de dans
-                    </label>
-                    <div className="relative">
-                      <Music className="w-5 h-5 text-[#741120] absolute left-3.5 top-1/2 -translate-y-1/2" />
-                      <input
-                        type="text"
-                        name="favoriteSong"
-                        placeholder="Artist - Numele piesei (pentru DJ)"
-                        value={formData.favoriteSong}
-                        onChange={handleChange}
-                        className="w-full pl-11 pr-4 py-3 rounded-xl border-2 border-[#d6c9b8] bg-white text-base focus:outline-none focus:ring-2 focus:ring-[#741120]"
                       />
                     </div>
                   </div>

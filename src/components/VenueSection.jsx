@@ -57,8 +57,8 @@ export default function VenueSection() {
                   <div className="bg-[#f5efe6] p-4 rounded-2xl border border-[#e4d8c8] flex items-start space-x-3">
                     <Car className="w-5 h-5 text-[#741120] mt-0.5 shrink-0" />
                     <div>
-                      <p className="text-sm font-bold text-[#221A1A] uppercase tracking-wider">Parcare Privată</p>
-                      <p className="text-xs sm:text-sm text-[#554747] mt-0.5">Spațiu generos, gratuit și păzit pentru toate mașinile oaspeților.</p>
+                      <p className="text-sm font-bold text-[#221A1A] uppercase tracking-wider">Parcare Privată (15 Locuri)</p>
+                      <p className="text-xs sm:text-sm text-[#554747] mt-0.5">Sunt disponibile doar 15 locuri de parcare privată, exclusiv pe durata evenimentului.</p>
                     </div>
                   </div>
 
